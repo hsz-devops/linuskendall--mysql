@@ -1,6 +1,6 @@
 # file: mysql/tasks/configure.yml
 
-- name: MySQL | Update the my.cnf
+- name: install my.cnf
   template:
     src: etc_mysql_my.cnf.j2
     dest: /etc/mysql/my.cnf

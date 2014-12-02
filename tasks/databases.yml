@@ -1,6 +1,6 @@
 # file: mysql/tasks/databases.yml
 
-- name: MySQL | Make sure the MySQL databases are present
+- name: create databases as required
   mysql_db:
     name: "{{ item.name }}"
     collation: "{{ item.collation | default('utf8_general_ci') }}"

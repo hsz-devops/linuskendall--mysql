@@ -1,6 +1,6 @@
 # file: mysql/tasks/users.yml
 
-- name: MySQL | Make sure the MySQL users are present
+- name: create mysql user
   mysql_user:
     name: "{{item.name}}"
     password: "{{item.pass | default('pass')}}"

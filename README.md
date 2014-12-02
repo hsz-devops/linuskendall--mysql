@@ -9,7 +9,6 @@ Features include:
 - Add users
 - Setup of monit process supervision
 
-
 #### Requirements & Dependencies
 - Tested on Ansible 1.4 or higher.
 - ANXS.monit if you want monit protection (in that case, you should set `monit_protection: true`)
