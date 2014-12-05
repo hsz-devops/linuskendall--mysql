@@ -1,9 +1,22 @@
 # file: mysql/tasks/main.yml
 
 - include: install.yml
+  tags:
+    - mysql
+
 - include: configure.yml
+  tags:
+    - mysql
 - include: secure.yml
+  tags:
+    - mysql
 - include: databases.yml
+  tags:
+    - mysql
 - include: users.yml
+  tags:
+    - mysql
 - include: monit.yml
   when: monit_protection is defined and monit_protection == true
+  tags:
+    - mysql
