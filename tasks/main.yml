@@ -1,5 +1,11 @@
 # file: mysql/tasks/main.yml
-
+- name: Include OS specific variables
+  include_vars: "{{ item }}"
+  with_first_found: 
+    - "{{ansible_distribution | lower }}-{{ansible_distribution_version}}.yml"
+    - "{{ansible_distribution | lower }}.yml"
+    - "{{ansible_os_family | lower}}.yml"
+ 
 - include: install.yml
   tags:
     - mysql
@@ -7,15 +13,19 @@
 - include: configure.yml
   tags:
     - mysql
+
 - include: secure.yml
   tags:
     - mysql
+
 - include: databases.yml
   tags:
     - mysql
+
 - include: users.yml
   tags:
     - mysql
+
 - include: monit.yml
   when: monit_protection is defined and monit_protection == true
   tags:
