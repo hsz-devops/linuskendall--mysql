@@ -9,23 +9,23 @@ port        = {{ mysql_port }}
 socket      = /var/run/mysqld/mysqld.sock
 
 [mysqld_safe]
-socket      = /var/run/mysqld/mysqld.sock
+socket      = {{ mysql_socket }}
 nice        = 0
 
 [mysqld]
 # * Basic Settings
-user        = mysql
-pid-file    = /var/run/mysqld/mysqld.pid
-socket      = /var/run/mysqld/mysqld.sock
+user        = {{ mysql_user }}
+pid-file    = {{ mysql_pid_file }}
+socket      = {{ mysql_socket }}
 port        = {{ mysql_port }}
-basedir     = /usr
-datadir     = /var/lib/mysql
-tmpdir      = /tmp
+basedir     = {{ mysql_base_dir }}
+datadir     = {{ mysql_data_dir }}
+tmpdir      = {{ mysql_tmp_dir }}
 # language is for pre-5.5. In 5.5 it is an alias for lc_messages_dir.
 language = {{ mysql_language }}
 bind-address = {{ mysql_bind_address }}
 skip-external-locking
-
+symbolic-links = {{ mysql_symbolic_links }}
 
 # * Fine Tuning
 key_buffer              = {{ mysql_key_buffer }}

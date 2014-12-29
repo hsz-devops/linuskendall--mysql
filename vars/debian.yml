@@ -1,5 +1,13 @@
 # file: mysql/vars/debian.yml
-
+mysql_service_name: mysql
+mysql_my_cnf_path: /etc/mysql/my.cnf
+mysql_data_dir: /var/lib/mysql
+mysql_base_dir: /usr
+mysql_pid_file: /var/run/mysqld/mysqld.pid
+mysql_socket: /var/run/mysqld/mysqld.sock
+mysql_tmp_dir: /tmp
+mysql_user: mysql
+mysql_symbolic_links: 0
 mysql_packages:
   - mysql-server
   - mysql-client

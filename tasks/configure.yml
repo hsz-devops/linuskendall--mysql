@@ -3,7 +3,7 @@
 - name: install my.cnf
   template:
     src: etc_mysql_my.cnf.j2
-    dest: /etc/mysql/my.cnf
+    dest: "{{mysql_my_cnf_path}}"
     owner: root
     group: root
     mode: 0644
