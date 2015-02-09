@@ -12,6 +12,23 @@
    - ::1
    - localhost
   when: ansible_hostname != 'localhost'
+  register: root_pass
+  ignore_errors: True
+
+- name: set the root password.
+  mysql_user:
+    user: root
+    host: "{{item}}"
+    password: "{{mysql_root_password}}"  
+    login_user: root
+    login_password: "{{mysql_root_password}}"
+  with_items:
+   - "{{ansible_fqdn}}"
+   - "{{ansible_hostname}}"
+   - 127.0.0.1
+   - ::1
+   - localhost
+  when: ansible_hostname != 'localhost' and root_pass|failed
 
 - name: set the root password.
   mysql_user:
@@ -23,6 +40,20 @@
    - ::1
    - localhost
   when: ansible_hostname == 'localhost'
+  register: root_pass
+  ignore_errors: True
+
+
+- name: set the root password.
+  mysql_user:
+    user: root
+    host: "{{item}}"
+    password: "{{mysql_root_password}}"  
+    login_user: root
+    login_password: "{{mysql_root_password}}"
+  with_items:
+   - localhost
+  when: ansible_hostname == 'localhost' and root_pass|failed
 
 - name: configure MySql for easy access as root user
   template:
